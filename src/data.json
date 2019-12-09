@@ -1,0 +1,74 @@
+{
+  "person": [
+    "Chiara",
+    "Francesca C.",
+    "Alessio",
+    "Francesca S.",
+    "Alessandro"
+  ],
+  "calendar": [
+    {
+      "id":0,
+      "name": "Turni della spazzatura"
+    },
+    {
+      "id":1,
+      "name": "Turno delle pulizie"
+    },
+    {
+      "id":2,
+      "name": "Turno della lavastrada"
+    }
+  ],
+  "shift": [
+    {
+      "calendar": 0,
+      "description": "Umido",
+      "badgeText": 1,
+      "badgeColor": "saddlebrown",
+      "date": "03/12/2019"
+    },
+    {
+      "calendar": 0,
+      "description": "Vetro e lattine",
+      "badgeText": 4,
+      "badgeColor": "forestgreen",
+      "date": "03/12/2019"
+    },
+    {
+      "calendar": 1,
+      "description": null,
+      "badgeText": 3,
+      "badgeColor": "default",
+      "date": "03/12/2019"
+    }
+  ],
+  "person-calendar": [
+    {
+      "person": 1,
+      "calendar": 0
+    },
+    {
+      "person": 1,
+      "calendar": 1
+    },
+    {
+      "person": 1,
+      "calendar": 2
+    }
+  ],
+  "admin-calendar": [
+    {
+      "person": 1,
+      "calendar": 0
+    },
+    {
+      "person": 1,
+      "calendar": 1
+    },
+    {
+      "person": 1,
+      "calendar": 2
+    }
+  ]
+}
