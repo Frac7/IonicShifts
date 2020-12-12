@@ -50,7 +50,9 @@ const Details: React.FC<DetailsProps> = ({ history }) => {
             <IonCard>
                 <IonCardHeader className="ion-text-center">
                     <IonCardTitle>
-                        {product.name}
+                        <IonText color="primary">
+                            <h1>{product.name}</h1>
+                        </IonText>
                     </IonCardTitle>
                     <IonCardSubtitle>
                         {product.caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas feugiat sapien vitae euismod.
@@ -58,14 +60,19 @@ const Details: React.FC<DetailsProps> = ({ history }) => {
                 </IonCardHeader>
                 <IonCardContent>
                     <IonList>
-                        {[{ name: 'Francesca C.', shifts: 2 }, { name: 'Giuseppe', shifts: 1 }].map(({ name, shifts }, index) => (
+                        {[
+                            { name: 'Francesca C.', shifts: 2 },
+                            { name: 'Fra e Chiara', shifts: 1 },
+                            { name: 'Alessandro', shifts: 1 },
+                            { name: 'Giuseppe', shifts: 1 }
+                            ].map(({ name, shifts }, index) => (
                             <IonItem key={index}>
                                 <IonRow className="ion-align-items-center ion-justify-content-between">
                                     <IonCol size="auto">
-                                        <IonText>{name}</IonText>
-                                    </IonCol>
-                                    <IonCol size="auto">
                                         <IonBadge color="primary">{shifts}</IonBadge>
+                                    </IonCol>
+                                    <IonCol>
+                                        <IonText>{name}</IonText>
                                     </IonCol>
                                 </IonRow>
                             </IonItem>
@@ -74,7 +81,7 @@ const Details: React.FC<DetailsProps> = ({ history }) => {
                 </IonCardContent>
             </IonCard>
             <IonFab vertical="bottom" horizontal="end" slot="fixed">
-                <IonFabButton size="small" color="primary" onClick={() => history.replace('/register')}>
+                <IonFabButton size="small" color="primary" onClick={() => history.push(`/register/${id}`)}>
                     <IonIcon icon={add}/>
                 </IonFabButton>
             </IonFab>
