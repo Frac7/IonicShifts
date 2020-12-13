@@ -7,7 +7,8 @@ import {
     IonPage,
     IonRow,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    IonBackButton
 } from '@ionic/react';
 
 type BasePageProps = {
@@ -19,8 +20,11 @@ const BasePage: React.FC<BasePageProps> = ({ title, content }: BasePageProps) =>
     <IonPage>
         <IonHeader>
             <IonToolbar color="primary">
-                <IonRow className="ion-align-items-center ion-justify-content-around">
-                    <IonCol className="ion-text-center">
+                <IonRow className="ion-align-items-center ion-justify-content-start">
+                    <IonCol size="auto">
+                        <IonBackButton />
+                    </IonCol>
+                    <IonCol>
                         <IonTitle>{title}</IonTitle>
                     </IonCol>
                 </IonRow>
