@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {
     IonList,
@@ -13,29 +13,40 @@ import {
 import { arrowDropright } from 'ionicons/icons'
 
 import BasePage from './BasePage';
+import {useHistory} from "react-router";
 
 type HomeProps = {
-    history: any
+    setIsLoading: any,
+    setIsError: any
 }
 
-const Home: React.FC<HomeProps> = ({ history }: HomeProps) => (
-    <BasePage title="Turni Acquisto Prodotti" content={
+const Home: React.FC<HomeProps> = ({ setIsLoading, setIsError }: HomeProps) => {
+    const history = useHistory();
+
+    const [ items, setItems ] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/products')
+            .then((res) => res.json())
+            .then((res) => {
+                setItems(res);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setIsError(true);
+                setIsLoading(false);
+            });
+    }, [setIsError, setIsLoading]);
+
+    return (
         <IonList>
-            {[
-                { item: 'Scottex', current: 'Francesca C.'},
-                { item: 'Detersivo Lavastoviglie', current: 'Fra e Chiara'},
-                { item: 'Detersivo Piatti', current: 'Alessandro'},
-                { item: 'Buste', current: 'Giuseppe'},
-                ].map(({ item, current}, index) => (
+            {items.map(({ name }, index) => (
                 <IonItem onClick={() => history.push(`/details/${index}`)} key={index}>
                     <IonLabel>
                         <IonRow className="ion-align-items-center ion-justify-content-between">
                             <IonCol size="10">
                                 <IonText color="primary">
-                                    <h1>{item}</h1>
-                                </IonText>
-                                <IonText>
-                                    <p>{current}</p>
+                                    <h1>{name}</h1>
                                 </IonText>
                             </IonCol>
                             <IonCol size="auto">
@@ -46,7 +57,7 @@ const Home: React.FC<HomeProps> = ({ history }: HomeProps) => (
                 </IonItem>
             ))}
         </IonList>
-    } />
-);
+    );
+}
 
-export default Home;
+export default () => <BasePage title="Turni Acquisto Prodotti" Content={Home} />;
