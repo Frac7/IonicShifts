@@ -7,20 +7,16 @@ import {
     IonCardContent,
     IonCardSubtitle,
     IonCardHeader,
-    IonList,
-    IonItem,
-    IonBadge,
     IonText,
-    IonRow,
-    IonCol,
     IonFab,
     IonFabButton,
-    IonIcon
+    IonIcon, IonSpinner
 } from '@ionic/react';
 
 import { add } from 'ionicons/icons';
 
 import BasePage from './BasePage';
+import { ListOfPeople } from '../components';
 
 type DetailsProps = {
     history: any
@@ -28,7 +24,7 @@ type DetailsProps = {
 
 type DetailsState = {
     name: string,
-    caption: number
+    description: string
 }
 
 const Details: React.FC<DetailsProps> = ({ history }) => {
@@ -36,13 +32,32 @@ const Details: React.FC<DetailsProps> = ({ history }) => {
 
     const [ product, setProduct ] = useState<DetailsState>({
         name: '',
-        caption: 0
+        description: ''
     });
 
+    const [ isLoading, setIsLoading ] = useState(true);
+    const [ isError, setIsError ] = useState(false);
+
     useEffect(() => {
-        // API call...
-        setProduct({ name: 'Scottex', caption: id });
+        fetch(`http://localhost:3000/products/${id}`)
+            .then((res) => res.json())
+            .then((res) => {
+                setProduct(res);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setIsError(true);
+                setIsLoading(false);
+            });
     }, [id]);
+
+    if (isLoading) {
+        return <IonSpinner color="primary" />
+    }
+
+    if (isError) {
+        return <IonText color="danger">Si è verificato un errore.</IonText>
+    }
 
     return (
         <BasePage title="Dettagli" content={(
@@ -55,29 +70,11 @@ const Details: React.FC<DetailsProps> = ({ history }) => {
                         </IonText>
                     </IonCardTitle>
                     <IonCardSubtitle>
-                        {product.caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas feugiat sapien vitae euismod.
+                        {product.description}
                     </IonCardSubtitle>
                 </IonCardHeader>
                 <IonCardContent>
-                    <IonList>
-                        {[
-                            { name: 'Francesca C.', shifts: 2 },
-                            { name: 'Fra e Chiara', shifts: 1 },
-                            { name: 'Alessandro', shifts: 1 },
-                            { name: 'Giuseppe', shifts: 1 }
-                            ].map(({ name, shifts }, index) => (
-                            <IonItem key={index}>
-                                <IonRow className="ion-align-items-center ion-justify-content-between">
-                                    <IonCol size="auto">
-                                        <IonBadge color="primary">{shifts}</IonBadge>
-                                    </IonCol>
-                                    <IonCol>
-                                        <IonText>{name}</IonText>
-                                    </IonCol>
-                                </IonRow>
-                            </IonItem>
-                        ))}
-                    </IonList>
+                    <ListOfPeople id={id}/>
                 </IonCardContent>
             </IonCard>
             <IonFab vertical="bottom" horizontal="end" slot="fixed">
