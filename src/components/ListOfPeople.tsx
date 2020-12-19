@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 
 import {
     IonBadge,
@@ -6,7 +6,8 @@ import {
     IonItem,
     IonList,
     IonRow, IonSpinner,
-    IonText
+    IonText,
+    useIonViewWillEnter
 } from '@ionic/react';
 
 type ListOfPeopleProps = {
@@ -18,7 +19,7 @@ const ListOfPeople: React.FC<ListOfPeopleProps> = ({ id }) => {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ isError, setIsError ] = useState(false);
 
-    useEffect(() => {
+    useIonViewWillEnter(() => {
         fetch(`http://localhost:3000/shift/${id}`)
             .then((res) => res.json())
             .then((res) => {

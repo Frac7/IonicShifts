@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router';
 
 import {
@@ -48,7 +48,7 @@ const Details: React.FC<DetailsProps> = ({ setIsLoading, setIsError }) => {
                 setIsError(true);
                 setIsLoading(false);
             });
-    }, [id, setIsError, setIsLoading]);
+    }, [id, setIsLoading, setIsError]);
 
     return (
         <>
