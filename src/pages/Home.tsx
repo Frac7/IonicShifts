@@ -40,8 +40,8 @@ const Home: React.FC<HomeProps> = ({ setIsLoading, setIsError }: HomeProps) => {
 
     return (
         <IonList>
-            {items.map(({ name }, index) => (
-                <IonItem onClick={() => history.push(`/details/${index}`)} key={index}>
+            {items.map(({ name, _id }) => (
+                <IonItem onClick={() => history.push(`/details/${_id}`)} key={_id}>
                     <IonLabel>
                         <IonRow className="ion-align-items-center ion-justify-content-between">
                             <IonCol size="10">
