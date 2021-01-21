@@ -26,7 +26,7 @@ const Home: React.FC<HomeProps> = ({ setIsLoading, setIsError }: HomeProps) => {
     const [ items, setItems ] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/products')
+        fetch('https://product-shifts-be.herokuapp.com/products')
             .then((res) => res.json())
             .then((res) => {
                 setItems(res);

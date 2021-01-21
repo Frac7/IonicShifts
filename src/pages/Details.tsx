@@ -38,7 +38,7 @@ const Details: React.FC<DetailsProps> = ({ setIsLoading, setIsError }) => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:3000/products/${id}`)
+        fetch(`https://product-shifts-be.herokuapp.com/products/${id}`)
             .then((res) => res.json())
             .then((res) => {
                 setProduct(res);

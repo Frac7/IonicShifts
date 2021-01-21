@@ -25,7 +25,7 @@ const Register: React.FC<RegisterProps> = ({ isLoading, setIsLoading, setIsError
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/products/${product}`)
+        fetch(`https://product-shifts-be.herokuapp.com/products/${product}`)
             .then((res) => res.json())
             .then((res) => {
                 setItem(res.name);
@@ -41,7 +41,7 @@ const Register: React.FC<RegisterProps> = ({ isLoading, setIsLoading, setIsError
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/people`)
+        fetch(`https://product-shifts-be.herokuapp.com/people`)
             .then((res) => res.json())
             .then((res) => {
                 setPeople(res);
@@ -57,7 +57,7 @@ const Register: React.FC<RegisterProps> = ({ isLoading, setIsLoading, setIsError
 
     const handleIncrement = useCallback(() => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/shift/${product}/${person}`, { method: 'POST' })
+        fetch(`https://product-shifts-be.herokuapp.com/shift/${product}/${person}`, { method: 'POST' })
             .then((res) => res.json())
             .then(() => {
                 setIsLoading(false);

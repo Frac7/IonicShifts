@@ -20,7 +20,7 @@ const ListOfPeople: React.FC<ListOfPeopleProps> = ({ id }) => {
     const [ isError, setIsError ] = useState(false);
 
     useIonViewWillEnter(() => {
-        fetch(`http://localhost:3000/shift/${id}`)
+        fetch(`https://product-shifts-be.herokuapp.com/shift/${id}`)
             .then((res) => res.json())
             .then((res) => {
                 setShift(res);
