@@ -84,8 +84,8 @@ const Register: React.FC<RegisterProps> = ({ isLoading, setIsLoading, setIsError
             <IonRow className="ion-align-items-center ion-justify-content-between">
                 <IonCol>
                     <IonSelect value={person} onIonChange={(event: any) => setPerson(event.target.value)}>
-                        {people.map(({ name }, index) => (
-                            <IonSelectOption key={index} value={index}>{name}</IonSelectOption>
+                        {people.map(({ name, _id }, index) => (
+                            <IonSelectOption key={index} value={_id}>{name}</IonSelectOption>
                         ))}
                     </IonSelect>
                 </IonCol>
