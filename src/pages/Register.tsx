@@ -57,7 +57,7 @@ const Register: React.FC<RegisterProps> = ({ isLoading, setIsLoading, setIsError
 
     const handleIncrement = useCallback(() => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/shift/${product}/${person}`, { method: 'POST' })
+        fetch(`http://localhost:3000/shift/${product}/${person}`, { method: 'PUT' })
             .then((res) => res.json())
             .then(() => {
                 setIsLoading(false);
